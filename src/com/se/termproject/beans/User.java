@@ -1,4 +1,4 @@
-package com.se.teamproject.beans;
+package com.se.termproject.beans;
 
 import java.io.Serializable;
 

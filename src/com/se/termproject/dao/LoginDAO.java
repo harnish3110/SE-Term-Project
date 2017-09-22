@@ -1,4 +1,4 @@
-package com.se.teamproject.dao;
+package com.se.termproject.dao;
 
 public class LoginDAO {
 
