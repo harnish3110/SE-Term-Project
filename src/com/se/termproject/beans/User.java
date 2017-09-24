@@ -15,8 +15,6 @@ public class User implements Serializable {
 	private String add;
 	private String number;
 	private String eMail;
-	private String uName;
-	private String pass;
 
 	public String getfName() {
 		return fName;
@@ -56,22 +54,6 @@ public class User implements Serializable {
 
 	public void seteMail(String eMail) {
 		this.eMail = eMail;
-	}
-
-	public String getuName() {
-		return uName;
-	}
-
-	public void setuName(String uName) {
-		this.uName = uName;
-	}
-
-	public String getPass() {
-		return pass;
-	}
-
-	public void setPass(String pass) {
-		this.pass = pass;
 	}
 
 	public String register() {

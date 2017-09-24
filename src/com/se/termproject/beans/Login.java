@@ -15,6 +15,7 @@ public class Login implements Serializable {
 	private String uName = null;
 	private String pass = null;
 	private String msg = null;
+	private Boolean isValid=false;
 
 	public String getuName() {
 		return uName;
@@ -39,16 +40,32 @@ public class Login implements Serializable {
 	public void setMsg(String msg) {
 		this.msg = msg;
 	}
+	
+	public Boolean getIsValid() {
+		return isValid;
+	}
+
+	public void setIsValid(Boolean isValid) {
+		this.isValid = isValid;
+	}
 
 	public String validateLogin() {
 		Boolean result = LoginDAO.validateUser(uName, pass);
 		if (result) {
 			this.setMsg(null);
+			this.isValid=false;
 			return "home";
 		} else {
+			this.setIsValid(true);
 			this.setMsg("Invalid Credentials");
 			return "login";
 		}
+	}
+	
+	public String logOut() {
+		this.setuName(null);
+		this.setPass(null);
+		return "login";
 	}
 
 }
