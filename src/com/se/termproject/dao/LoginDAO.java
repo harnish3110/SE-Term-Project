@@ -1,11 +1,27 @@
 package com.se.termproject.dao;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import com.se.termproject.utilities.DatabaseConnection;
+
 public class LoginDAO {
 
 	public static Boolean validateUser(String uName, String pass) {
 		// TODO Auto-generated method stub
-		if(uName.equals("Admin")&& pass.equals("Admin"))
-			return true;
+		try {
+			DatabaseConnection db = new DatabaseConnection();
+			Connection con = db.createConnection();
+			Statement statement = con.createStatement();
+			ResultSet rest = statement
+					.executeQuery("select * from users where (user_id ='" + uName + "'&& password='" + pass + "')");
+			if (rest.next())
+				return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 		return false;
 	}
 
