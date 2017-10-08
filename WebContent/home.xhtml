@@ -31,11 +31,15 @@
 	</div>
 	<div class="row col-xs-12 text-center">
 		<h3>
-			<h:outputLabel style="color:blue; font-family:initial" value="#{user.uName}"></h:outputLabel>
+			<h:outputLabel style="color:blue; font-family:initial"
+				value="#{user.uName}"></h:outputLabel>
 		</h3>
 	</div>
 	<div class="col-md-10 pull-right">
-		<a class="btn btn-primary" href="login.jsf">Log Out</a>
+		<h:form>
+			<h:commandButton class="btn btn-primary" value="Log Out"
+				action="#{user.logOut}"></h:commandButton>
+		</h:form>
 	</div>
 
 </h:body>

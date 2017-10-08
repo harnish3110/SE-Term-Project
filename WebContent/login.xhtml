@@ -74,11 +74,8 @@
 					</div>
 				</div>
 			</div>
-			<h:message rendered="#{user.msg == null}">
-				<div class="alert alert-danger" role="alert">#{user.msg}</div>
-			</h:message>
 			<h:outputText class="alert alert-danger"
-				rendered="#{not empty user.msg}" value="#{user.msg}" />
+				rendered="#{not empty message}" value="#{message}" />
 		</h:form>
 	</div>
 </h:body>
