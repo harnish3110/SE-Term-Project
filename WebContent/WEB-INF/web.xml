@@ -38,4 +38,13 @@
 	<listener>
 		<listener-class>com.sun.faces.config.ConfigureListener</listener-class>
 	</listener>
+	<filter>
+		<filter-name>LoggedFilter</filter-name>
+		<filter-class>LoggedFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>LoggedFilter</filter-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</filter-mapping>
 </web-app>

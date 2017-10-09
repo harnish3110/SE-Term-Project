@@ -25,4 +25,23 @@ public class LoginDAO {
 		return false;
 	}
 
+	public static Object getNameById(String userId) {
+		// TODO Auto-generated method stub
+		
+		try {
+			DatabaseConnection db = new DatabaseConnection();
+			Connection con = db.createConnection();
+			Statement statement = con.createStatement();
+			ResultSet rest = statement
+					.executeQuery("select firstName from users where (user_id ='" + userId + "')");
+			rest.next();
+			return rest.getString("firstName");
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return "User";
+	}
+
 }

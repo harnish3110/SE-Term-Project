@@ -15,19 +15,28 @@ import com.se.termproject.dao.RegistrationDAO;
 public class User implements Serializable {
 	private static final long serialVersionUID = 8220815346552611557L;
 
-	private String uName = null;
+	private String fName = null;
+	private String lName=null;
 	private String pass = null;
 	private String msg = null;
 	private Boolean isValid = false;
 	private String eMail = null;
 	private String userId = null;
-
-	public String getuName() {
-		return uName;
+	
+	public String getfName() {
+		return fName;
 	}
 
-	public void setuName(String uName) {
-		this.uName = uName;
+	public void setfName(String fName) {
+		this.fName = fName;
+	}
+
+	public String getlName() {
+		return lName;
+	}
+
+	public void setlName(String lName) {
+		this.lName = lName;
 	}
 
 	public String getPass() {
@@ -73,13 +82,12 @@ public class User implements Serializable {
 	}
 
 	public String validateLogin() {
-		Boolean result = LoginDAO.validateUser(uName, pass);
+		Boolean result = LoginDAO.validateUser(this.getUserId(), this.getPass());
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		if (result) {
 			HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
 			facesContext.getExternalContext().getSessionMap().put("message", "Success");
-			// session.setAttribute("Message", this.getMsg());
-			session.setAttribute("User Id", this.getUserId());
+			facesContext.getExternalContext().getSessionMap().put("firstName", LoginDAO.getNameById(this.getUserId()));
 			return "home";
 		} else {
 			this.setIsValid(true);
@@ -105,7 +113,7 @@ public class User implements Serializable {
 				FacesContext facesContext = FacesContext.getCurrentInstance();
 				HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
 				facesContext.getExternalContext().getSessionMap().put("message", "Registration Successful");
-				session.setAttribute("User Id", this.getUserId());
+				facesContext.getExternalContext().getSessionMap().put("firstName", this.getfName());
 				return "login";
 			} else {
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("msg",

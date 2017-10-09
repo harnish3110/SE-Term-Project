@@ -37,14 +37,29 @@
 
 			<!-- First Name -->
 			<div class="form-group">
-				<h:outputLabel value="Name "
+				<h:outputLabel value="First Name "
 					class="col-xs-12 col-sm-4 control-label" />
 				<div class="col-xs-12 col-sm-4">
-					<h:inputText class="form-control" id="uName" required="true"
-						value="#{user.uName}" pattern="[A-Za-z]{2,}"
-						requiredMessage="Enter Name">
+					<h:inputText class="form-control" id="fName" required="true"
+						value="#{user.fName}" requiredMessage="Enter First Name"
+						validatorMessage="String is not valid (only alphabets)">
+						<f:validateRegex pattern="[a-zA-Z ]+" />
 					</h:inputText>
-					<h:message style="color:red" for="uName" class="error_message"></h:message>
+					<h:message style="color:red" for="fName" class="error_message"></h:message>
+				</div>
+			</div>
+
+			<!-- Last Name -->
+			<div class="form-group">
+				<h:outputLabel value="Last Name "
+					class="col-xs-12 col-sm-4 control-label" />
+				<div class="col-xs-12 col-sm-4">
+					<h:inputText class="form-control" id="lName" required="true"
+						value="#{user.lName}" requiredMessage="Enter Last Name"
+						validatorMessage="String is not valid (only alphabets)">
+						<f:validateRegex pattern="[a-zA-Z ]+" />
+					</h:inputText>
+					<h:message style="color:red" for="lName" class="error_message"></h:message>
 				</div>
 			</div>
 
@@ -54,7 +69,11 @@
 					class="col-xs-12 col-sm-4 control-label" />
 				<div class="col-xs-12 col-sm-4">
 					<h:inputText class="form-control" id="eMail" required="true"
-						value="#{user.eMail}" requiredMessage="Enter the Email">
+						value="#{user.eMail}"
+						validatorMessage="Email should be in the form name@domain.com"
+						requiredMessage="Enter the Email">
+						<f:validateRegex
+							pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
 					</h:inputText>
 					<h:message style="color:red" for="eMail" class="error_message"></h:message>
 				</div>
@@ -67,7 +86,11 @@
 					class="col-xs-12 col-sm-4 control-label" />
 				<div class="col-xs-12 col-sm-4">
 					<h:inputText class="form-control" id="userId" required="true"
-						value="#{user.userId}" requiredMessage="Enter the User Name"></h:inputText>
+						value="#{user.userId}"
+						validatorMessage="Please enter only alphabets or number and length 4-10"
+						requiredMessage="Enter the User Name">
+						<f:validateRegex pattern="[a-zA-Z0-9]{4,10}" />
+					</h:inputText>
 					<h:message style="color:red" for="userId" class="error_message"></h:message>
 				</div>
 			</div>
@@ -78,21 +101,11 @@
 					class="col-xs-12 col-sm-4 control-label" />
 				<div class="col-xs-12 col-sm-4">
 					<h:inputSecret class="form-control" id="pass" required="true"
-						value="#{user.pass}" onchange='check_pass();'
-						requiredMessage="Enter the Password"></h:inputSecret>
+						value="#{user.pass}"
+						validatorMessage="Password must be of atleast 6 Characters"
+						requiredMessage="Enter the Password">
+					</h:inputSecret>
 					<h:message style="color:red" for="pass" class="error_message"></h:message>
-				</div>
-			</div>
-
-			<!-- Retype Password -->
-			<div class="form-group">
-				<h:outputLabel value="Confirm Password"
-					class="col-xs-12 col-sm-4 control-label" />
-				<div class="col-xs-12 col-sm-4">
-					<h:inputSecret class="form-control" id="conf_pass" required="true"
-						onchange='check_pass();'
-						requiredMessage="Re-Type the Password"></h:inputSecret>
-					<h:message style="color:red" for="conf_pass" class="error_message"></h:message>
 				</div>
 			</div>
 
@@ -106,22 +119,12 @@
 					<div class="col-xs-6 text-center">
 						<a class="btn btn-primary" href="login.jsf">Log In</a>
 					</div>
-		
+
 				</div>
 			</div>
-			<h:outputText class="alert alert-danger"
-				rendered="#{not empty msg}" value="#{msg}" />
+			<h:outputText class="alert alert-danger" rendered="#{not empty msg}"
+				value="#{msg}" />
 		</h:form>
 	</div>
-	<script>
-		function check_pass() {
-			if (document.getElementById('pass').value == document
-					.getElementById('conf_pass').value) {
-				document.getElementById('register').disabled = false;
-			} else {
-				document.getElementById('register').disabled = true;
-			}
-		}
-	</script>
 </h:body>
 </html>
